@@ -19,7 +19,7 @@ Landing page de captação de leads para serviços de Marketing Science e rastre
 - **Build command:** *(vazio)*
 - **Build output directory:** `/`
 
-> Este projeto está sempre vinculado à conta Cloudflare do Matheus Ercolani com o projeto Pages chamado `matheusdados`. Não criar projetos Pages com outros nomes para este repositório.
+> Este projeto está sempre vinculado à conta Cloudflare do Matheus Ercolani com o projeto Pages chamado `consultoria-de-dados`. Não criar projetos Pages com outros nomes para este repositório.
 
 ## Cloudflare CLI — Gerenciamento de Contas
 
