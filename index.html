@@ -181,44 +181,44 @@
 
         .hero-form {
             display: flex;
+            flex-direction: column;
             width: 100%;
-            max-width: 560px;
-            border-radius: 14px;
+            max-width: 440px;
+            border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 20px 60px rgba(23,30,25,0.14);
+            border: 1px solid rgba(23,30,25,0.08);
         }
 
         .hero-input {
-            flex: 1;
+            width: 100%;
             padding: 18px 24px;
             font-family: inherit;
             font-size: 1rem;
-            border: 2px solid rgba(23,30,25,0.15);
-            border-right: none;
-            border-radius: 14px 0 0 14px;
+            border: none;
+            border-bottom: 1px solid rgba(23,30,25,0.1);
             outline: none;
             background: white;
             color: var(--charcoal);
-            transition: border-color 0.2s;
+            transition: background 0.2s;
         }
         .hero-input::placeholder { color: rgba(23,30,25,0.38); }
-        .hero-input:focus { border-color: var(--yellow); }
+        .hero-input:focus { background: rgba(255,225,124,0.07); }
 
         .hero-btn {
             font-family: 'Anton', sans-serif;
-            font-size: 1rem;
+            font-size: 1.1rem;
             text-transform: uppercase;
             letter-spacing: 0.04em;
             background: var(--yellow);
             color: var(--charcoal);
             border: none;
-            padding: 18px 28px;
+            padding: 20px 28px;
             cursor: pointer;
-            border-radius: 0 14px 14px 0;
-            white-space: nowrap;
-            transition: background 0.2s, transform 0.2s;
+            width: 100%;
+            transition: background 0.2s;
         }
-        .hero-btn:hover { background: #f5d45a; transform: scale(1.02); }
+        .hero-btn:hover { background: #f5d45a; }
 
         .hero-trust {
             font-size: 0.8rem;
@@ -706,30 +706,34 @@
 
         .final-form {
             display: flex;
+            flex-direction: column;
             width: 100%;
-            max-width: 520px;
-            border-radius: 14px;
+            max-width: 440px;
+            border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 20px 60px rgba(23,30,25,0.22);
             transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
         }
-        .final-form:hover { transform: scale(1.025); }
+        .final-form:hover { transform: scale(1.02); }
 
         .final-input {
-            flex: 1;
-            padding: 20px 24px;
+            width: 100%;
+            padding: 18px 24px;
             font-family: inherit;
             font-size: 1rem;
             border: none;
+            border-bottom: 1px solid rgba(23,30,25,0.1);
             outline: none;
             background: white;
             color: var(--charcoal);
+            transition: background 0.2s;
         }
         .final-input::placeholder { color: rgba(23,30,25,0.38); }
+        .final-input:focus { background: rgba(255,225,124,0.07); }
 
         .final-btn {
             font-family: 'Anton', sans-serif;
-            font-size: 1rem;
+            font-size: 1.1rem;
             text-transform: uppercase;
             letter-spacing: 0.04em;
             background: var(--charcoal);
@@ -737,7 +741,7 @@
             border: none;
             padding: 20px 28px;
             cursor: pointer;
-            white-space: nowrap;
+            width: 100%;
             transition: opacity 0.2s;
         }
         .final-btn:hover { opacity: 0.85; }
@@ -788,9 +792,8 @@
             .problem-side, .solution-side { padding: 60px 28px; }
             .features, .how-it-works, .testimonials, .final-cta { padding: 80px 20px; }
             .bento-grid { grid-template-columns: 1fr; }
-            .hero-form { flex-direction: column; border-radius: 14px; }
-            .hero-input { border-right: 2px solid rgba(23,30,25,0.15); border-radius: 14px; border-bottom: none; border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
-            .hero-btn { border-radius: 0 0 14px 14px; padding: 16px; }
+            .hero-form { max-width: 100%; }
+            .final-form { max-width: 100%; }
             .social-proof { padding: 24px 20px; }
             .social-proof-inner { gap: 28px; }
             .proof-divider { display: none; }
@@ -838,8 +841,10 @@
         </p>
 
         <form class="hero-form" onsubmit="handleSubmit(event)">
-            <input type="email" class="hero-input" placeholder="Seu e-mail empresarial" required />
-            <button type="submit" class="hero-btn">Quero Diagnóstico</button>
+            <input type="text"  class="hero-input" name="nome"     placeholder="Seu nome completo"         required />
+            <input type="email" class="hero-input" name="email"    placeholder="Seu e-mail empresarial"    required />
+            <input type="tel"   class="hero-input" name="telefone" placeholder="WhatsApp com DDD (ex: 11 99999-9999)" required />
+            <button type="submit" class="hero-btn">Quero Diagnóstico Grátis</button>
         </form>
 
         <p class="hero-trust">
@@ -1142,8 +1147,10 @@
         <p class="final-sub">Faça um diagnóstico gratuito e descubra quanto você está perdendo com rastreamento impreciso. Sem enrolação, sem compromisso.</p>
 
         <form class="final-form" onsubmit="handleSubmit(event)">
-            <input type="email" class="final-input" placeholder="seu@email.com" required />
-            <button type="submit" class="final-btn">Diagnóstico Grátis</button>
+            <input type="text"  class="final-input" name="nome"     placeholder="Seu nome completo"         required />
+            <input type="email" class="final-input" name="email"    placeholder="Seu e-mail empresarial"    required />
+            <input type="tel"   class="final-input" name="telefone" placeholder="WhatsApp com DDD (ex: 11 99999-9999)" required />
+            <button type="submit" class="final-btn">Quero Diagnóstico Grátis</button>
         </form>
 
         <p class="final-note">✓ Análise completa em 48h &nbsp;·&nbsp; ✓ Sem custo &nbsp;·&nbsp; ✓ Sem compromisso</p>
@@ -1166,17 +1173,31 @@
 <script>
     function handleSubmit(e) {
         e.preventDefault();
-        const email = e.target.querySelector('input[type="email"]').value;
-        const btn = e.target.querySelector('button');
+        const form = e.target;
+        const lead = {
+            nome:      form.nome.value.trim(),
+            email:     form.email.value.trim(),
+            telefone:  form.telefone.value.trim(),
+            origem:    form.closest('#cta') ? 'cta-final' : 'hero',
+            timestamp: new Date().toISOString(),
+        };
+
+        const btn = form.querySelector('button');
         const original = btn.textContent;
-        btn.textContent = 'Enviado!';
+        btn.textContent = 'Enviado! ✓';
         btn.style.background = '#22c55e';
+        btn.style.color = '#fff';
+        btn.disabled = true;
+
+        console.log('Lead capturado:', lead);
+
         setTimeout(() => {
             btn.textContent = original;
             btn.style.background = '';
-            e.target.reset();
-        }, 3000);
-        console.log('Lead capturado:', email);
+            btn.style.color = '';
+            btn.disabled = false;
+            form.reset();
+        }, 3500);
     }
 
     document.querySelectorAll('a[href^="#"]').forEach(a => {
