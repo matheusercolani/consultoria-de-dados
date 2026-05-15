@@ -21,6 +21,22 @@ Landing page de captação de leads para serviços de Marketing Science e rastre
 
 > Este projeto está sempre vinculado à conta Cloudflare do Matheus Ercolani com o projeto Pages chamado `matheusdados`. Não criar projetos Pages com outros nomes para este repositório.
 
+## Cloudflare CLI — Gerenciamento de Contas
+
+O sistema `cf-*` está instalado em `~/.bashrc`. Comandos disponíveis:
+
+| Comando | O que faz |
+|---|---|
+| `cf-on matheus-consultoria` | Ativa a conta Cloudflare deste projeto |
+| `cf-wrangler <cmd>` | Roda wrangler autenticado com o profile ativo |
+| `cf-off` | Desativa o profile |
+| `cf-list` | Lista todos os profiles cadastrados |
+| `cf-status` | Mostra o profile ativo |
+
+**Sempre rodar `cf-on matheus-consultoria` antes de qualquer comando wrangler neste projeto.**
+
+Profile registrado em `~/.config/cloudflare/` com Account ID `e4a039cfcd4e8160e4a12883e63b36c5`.
+
 ## Stack
 
 - HTML + CSS + JS puro (sem framework)
