@@ -16,7 +16,7 @@
             --dark-gray: #272727;
             --sage: #b7c6c2;
             --white: #ffffff;
-            --yellow: #ffe17c;
+            --yellow: #ffd000;
         }
 
         html { scroll-behavior: smooth; }
@@ -218,7 +218,7 @@
             width: 100%;
             transition: background 0.2s;
         }
-        .hero-btn:hover { background: #f5d45a; }
+        .hero-btn:hover { background: #e6bb00; }
 
         .hero-trust {
             font-size: 0.8rem;
@@ -801,6 +801,28 @@
             .footer-inner { flex-direction: column; align-items: flex-start; gap: 24px; }
         }
     </style>
+
+    <!-- ════ META PIXEL ════ -->
+    <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1290709392346372');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1290709392346372&ev=PageView&noscript=1"/></noscript>
+
+    <!-- ════ GA4 (proxy first-party — bypassa ad-blockers) ════ -->
+    <script async src="/scripts/gtag.js?id=G-KK9GFR6KW4"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KK9GFR6KW4');
+    </script>
 </head>
 <body>
 
@@ -1171,17 +1193,24 @@
 </footer>
 
 <script>
-    function handleSubmit(e) {
+    function getCookie(name) {
+        const match = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+        return match ? match[2] : '';
+    }
+
+    async function handleSubmit(e) {
         e.preventDefault();
         const form = e.target;
-        const lead = {
-            nome:      form.nome.value.trim(),
-            email:     form.email.value.trim(),
-            telefone:  form.telefone.value.trim(),
-            origem:    form.closest('#cta') ? 'cta-final' : 'hero',
-            timestamp: new Date().toISOString(),
-        };
+        const nome     = form.nome.value.trim();
+        const email    = form.email.value.trim();
+        const telefone = form.telefone.value.trim();
+        const origem   = form.closest('#cta') ? 'cta-final' : 'hero';
 
+        // UUID único por envio — Meta usa para deduplicar browser + servidor
+        const eventId   = crypto.randomUUID();
+        const eventTime = Math.floor(Date.now() / 1000);
+
+        // UX imediato
         const btn = form.querySelector('button');
         const original = btn.textContent;
         btn.textContent = 'Enviado! ✓';
@@ -1189,7 +1218,41 @@
         btn.style.color = '#fff';
         btn.disabled = true;
 
-        console.log('Lead capturado:', lead);
+        const nameParts = nome.split(' ');
+        const fn = nameParts[0] || '';
+        const ln = nameParts.slice(1).join(' ') || '';
+
+        // Disparo browser-side (Meta Pixel — para deduplicação com CAPI)
+        if (typeof fbq !== 'undefined') {
+            fbq('track', 'Lead', { content_name: origem }, { eventID: eventId });
+        }
+
+        // Disparo browser-side GA4
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'generate_lead', { event_id: eventId });
+        }
+
+        // Disparo server-side: Meta CAPI + GA4 Measurement Protocol
+        try {
+            await fetch('/tracker', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    event_name:       'Lead',
+                    event_id:         eventId,
+                    event_time:       eventTime,
+                    event_source_url: window.location.href,
+                    user_data: {
+                        em:  email,
+                        fn:  fn,
+                        ln:  ln,
+                        ph:  telefone,
+                        fbp: getCookie('_fbp'),
+                        fbc: getCookie('_fbc'),
+                    }
+                })
+            });
+        } catch (_) { /* tracking não bloqueia UX */ }
 
         setTimeout(() => {
             btn.textContent = original;
