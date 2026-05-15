@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KROB | Marketing Science para E-commerce de Cosméticos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --charcoal: #171e19;
+            --dark-gray: #272727;
+            --sage: #b7c6c2;
+            --white: #ffffff;
+            --yellow: #ffe17c;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Satoshi', 'Inter', system-ui, sans-serif;
+            color: var(--charcoal);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* ── NAVIGATION ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 80px;
+            background: rgba(255,255,255,0.90);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(23,30,25,0.08);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            padding: 0 48px;
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.875rem;
+            text-transform: uppercase;
+            color: var(--charcoal);
+            text-decoration: none;
+        }
+        .logo span { color: var(--yellow); }
+
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links a {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--charcoal);
+            text-decoration: none;
+            opacity: 0.75;
+            transition: opacity 0.2s;
+        }
+        .nav-links a:hover { opacity: 1; }
+
+        .nav-actions { display: flex; align-items: center; gap: 24px; }
+
+        .nav-login {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--charcoal);
+            text-decoration: none;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+        .nav-login:hover { opacity: 1; }
+
+        .nav-cta {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--white);
+            background: var(--charcoal);
+            border: none;
+            padding: 10px 24px;
+            border-radius: 9999px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            padding-top: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: var(--white);
+            background-image:
+                linear-gradient(to right,  rgba(183,198,194,0.18) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(183,198,194,0.18) 1px, transparent 1px);
+            background-size: 40px 40px;
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+
+        .hero-inner {
+            max-width: 960px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--charcoal);
+            background: rgba(255,225,124,0.18);
+            border: 1px solid rgba(255,225,124,0.55);
+            padding: 8px 18px;
+            border-radius: 9999px;
+        }
+
+        .badge-dot {
+            width: 8px; height: 8px;
+            background: var(--yellow);
+            border-radius: 50%;
+            animation: badge-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes badge-pulse {
+            0%,100% { opacity:1; transform:scale(1); }
+            50%      { opacity:0.5; transform:scale(1.3); }
+        }
+
+        .hero-headline {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(3.5rem, 9vw, 7.5rem);
+            text-transform: uppercase;
+            line-height: 0.92;
+            color: var(--charcoal);
+        }
+
+        .highlight-wrap {
+            display: inline-block;
+            position: relative;
+        }
+        .highlight-wrap::before {
+            content: '';
+            position: absolute;
+            inset: -6px -10px;
+            background: var(--yellow);
+            transform: rotate(-1.5deg) skewX(-1deg);
+            z-index: 0;
+        }
+        .highlight-wrap > span { position: relative; z-index: 1; }
+
+        .hero-sub {
+            font-size: 1.125rem;
+            line-height: 1.65;
+            color: rgba(23,30,25,0.65);
+            max-width: 580px;
+        }
+
+        .hero-form {
+            display: flex;
+            width: 100%;
+            max-width: 560px;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(23,30,25,0.14);
+        }
+
+        .hero-input {
+            flex: 1;
+            padding: 18px 24px;
+            font-family: inherit;
+            font-size: 1rem;
+            border: 2px solid rgba(23,30,25,0.15);
+            border-right: none;
+            border-radius: 14px 0 0 14px;
+            outline: none;
+            background: white;
+            color: var(--charcoal);
+            transition: border-color 0.2s;
+        }
+        .hero-input::placeholder { color: rgba(23,30,25,0.38); }
+        .hero-input:focus { border-color: var(--yellow); }
+
+        .hero-btn {
+            font-family: 'Anton', sans-serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            background: var(--yellow);
+            color: var(--charcoal);
+            border: none;
+            padding: 18px 28px;
+            cursor: pointer;
+            border-radius: 0 14px 14px 0;
+            white-space: nowrap;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .hero-btn:hover { background: #f5d45a; transform: scale(1.02); }
+
+        .hero-trust {
+            font-size: 0.8rem;
+            color: rgba(23,30,25,0.45);
+        }
+        .hero-trust strong { color: var(--charcoal); font-weight: 600; }
+
+        /* ── SOCIAL PROOF BAR ── */
+        .social-proof {
+            background: var(--charcoal);
+            padding: 28px 48px;
+        }
+
+        .social-proof-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 64px;
+            max-width: 1280px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .proof-stat { text-align: center; }
+
+        .proof-number {
+            font-family: 'Anton', sans-serif;
+            font-size: 2.5rem;
+            color: var(--yellow);
+            line-height: 1;
+        }
+
+        .proof-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--sage);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-top: 4px;
+            opacity: 0.7;
+        }
+
+        .proof-divider {
+            width: 1px; height: 48px;
+            background: rgba(183,198,194,0.2);
+        }
+
+        /* ── PROBLEM / SOLUTION ── */
+        .problem-solution {
+            display: flex;
+            min-height: 680px;
+        }
+
+        .problem-side, .solution-side {
+            flex: 1;
+            padding: 88px 64px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 40px;
+        }
+
+        .problem-side { background: var(--charcoal); }
+        .solution-side { background: var(--dark-gray); border-left: 4px solid var(--yellow); }
+
+        .side-tag {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+        }
+        .side-tag.problem { color: rgba(183,198,194,0.55); }
+        .side-tag.solution { color: var(--yellow); }
+
+        .side-headline {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(2.25rem, 4vw, 3.25rem);
+            text-transform: uppercase;
+            line-height: 0.92;
+            color: var(--white);
+        }
+
+        .side-items { display: flex; flex-direction: column; gap: 22px; }
+
+        .side-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .side-icon { width: 22px; height: 22px; flex-shrink: 0; margin-top: 2px; }
+
+        .side-item-text {
+            font-size: 0.95rem;
+            line-height: 1.55;
+        }
+        .side-item-text.problem { color: rgba(183,198,194,0.75); }
+        .side-item-text.solution { color: rgba(255,255,255,0.88); font-weight: 500; }
+
+        /* ── BENTO FEATURE GRID ── */
+        .features {
+            padding: 120px 48px;
+            background: #f8f9fa;
+        }
+
+        .section-header { text-align: center; margin-bottom: 64px; }
+
+        .section-tag {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: rgba(23,30,25,0.45);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            text-transform: uppercase;
+            line-height: 0.92;
+            color: var(--charcoal);
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 400px;
+            gap: 20px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .bento-card {
+            border-radius: 18px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            position: relative;
+            transition: transform 300ms cubic-bezier(0.4,0,0.2,1), box-shadow 300ms cubic-bezier(0.4,0,0.2,1);
+        }
+        .bento-card:hover { transform: translateY(-5px); box-shadow: 0 28px 80px rgba(23,30,25,0.13); }
+
+        .bento-card.light { background: var(--white); border: 1px solid rgba(23,30,25,0.08); }
+        .bento-card.dark  { background: var(--charcoal); border: 1px solid rgba(183,198,194,0.08); }
+        .bento-card.span-2 { grid-column: span 2; }
+
+        .card-tag {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+        }
+        .card-tag.light { color: rgba(23,30,25,0.38); }
+        .card-tag.dark  { color: rgba(183,198,194,0.45); }
+
+        .card-title {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.875rem;
+            text-transform: uppercase;
+            line-height: 1;
+            margin-top: 10px;
+        }
+        .card-title.light { color: var(--charcoal); }
+        .card-title.dark  { color: var(--white); }
+
+        .card-desc { font-size: 0.88rem; line-height: 1.65; }
+        .card-desc.light { color: rgba(23,30,25,0.58); }
+        .card-desc.dark  { color: rgba(183,198,194,0.68); }
+
+        /* Pulse bars */
+        .pulse-bars {
+            display: flex;
+            gap: 7px;
+            align-items: flex-end;
+            height: 70px;
+            margin-bottom: 20px;
+        }
+        .pulse-bar {
+            flex: 1;
+            background: var(--yellow);
+            border-radius: 5px;
+            animation: bar-anim 1.6s ease-in-out infinite;
+        }
+        .pulse-bar:nth-child(1) { height:38%; animation-delay:0s; }
+        .pulse-bar:nth-child(2) { height:72%; animation-delay:0.18s; }
+        .pulse-bar:nth-child(3) { height:52%; animation-delay:0.36s; }
+        .pulse-bar:nth-child(4) { height:92%; animation-delay:0.09s; }
+        .pulse-bar:nth-child(5) { height:64%; animation-delay:0.27s; }
+        .pulse-bar:nth-child(6) { height:43%; animation-delay:0.45s; }
+        .pulse-bar:nth-child(7) { height:80%; animation-delay:0.14s; }
+        .pulse-bar:nth-child(8) { height:58%; animation-delay:0.32s; }
+
+        @keyframes bar-anim {
+            0%,100% { opacity:1; transform:scaleY(1); }
+            50%      { opacity:0.55; transform:scaleY(0.78); }
+        }
+
+        /* Mini attribution dashboard */
+        .mini-dash {
+            background: rgba(255,255,255,0.06);
+            border-radius: 10px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .mini-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255,255,255,0.04);
+            border-radius: 6px;
+            padding: 8px 12px;
+        }
+
+        .mini-label {
+            font-size: 0.68rem;
+            color: rgba(183,198,194,0.65);
+            letter-spacing: 0.05em;
+        }
+
+        .mini-val {
+            font-family: 'Anton', sans-serif;
+            font-size: 1rem;
+            color: var(--yellow);
+        }
+
+        /* CLV progress bar */
+        .clv-block {
+            background: #f0f2f1;
+            border-radius: 10px;
+            padding: 14px;
+            margin-bottom: 12px;
+        }
+
+        .clv-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .clv-row-label { font-size: 0.68rem; color: rgba(23,30,25,0.5); }
+        .clv-row-val { font-family: 'Anton', sans-serif; font-size: 0.9rem; color: var(--charcoal); }
+
+        .clv-bar-track {
+            height: 5px;
+            background: rgba(23,30,25,0.08);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .clv-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            background: var(--yellow);
+        }
+
+        /* Dashboard mockup inside dark card */
+        .dash-mockup {
+            background: #0e1117;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .dash-topbar {
+            background: #1c1c2e;
+            padding: 8px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(183,198,194,0.06);
+        }
+
+        .tl { display: flex; gap: 5px; }
+        .tl-dot { width: 9px; height: 9px; border-radius: 50%; }
+        .tl-dot.r { background: #ff5f56; }
+        .tl-dot.y { background: #ffbd2e; }
+        .tl-dot.g { background: #27c93f; }
+
+        .dash-url {
+            flex: 1;
+            text-align: center;
+            font-size: 0.6rem;
+            color: rgba(183,198,194,0.4);
+            letter-spacing: 0.04em;
+        }
+
+        .dash-metrics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            padding: 12px;
+        }
+
+        .dash-metric {
+            background: rgba(255,255,255,0.04);
+            border-radius: 6px;
+            padding: 10px;
+        }
+        .dash-metric.accent {
+            background: rgba(255,225,124,0.10);
+            border: 1px solid rgba(255,225,124,0.18);
+        }
+
+        .dm-label { font-size: 0.52rem; color: rgba(183,198,194,0.55); letter-spacing: 0.06em; margin-bottom: 4px; }
+        .dm-val { font-family: 'Anton', sans-serif; font-size: 1.15rem; }
+        .dm-val.y { color: var(--yellow); }
+        .dm-val.w { color: var(--white); }
+
+        /* ── HOW IT WORKS ── */
+        .how-it-works {
+            padding: 120px 48px;
+            background: var(--white);
+            border-top: 1px solid rgba(23,30,25,0.07);
+        }
+
+        .hiw-inner {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 80px;
+            max-width: 1280px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        .hiw-left { position: sticky; top: 120px; }
+
+        .hiw-title {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(3.5rem, 5.5vw, 5rem);
+            text-transform: uppercase;
+            line-height: 0.92;
+            color: var(--charcoal);
+        }
+
+        .hiw-sub {
+            font-size: 1rem;
+            line-height: 1.65;
+            color: rgba(23,30,25,0.55);
+            margin-top: 24px;
+        }
+
+        .steps { display: flex; flex-direction: column; }
+
+        .step {
+            display: flex;
+            gap: 32px;
+            align-items: flex-start;
+            padding: 48px 0;
+            border-bottom: 1px solid rgba(23,30,25,0.08);
+            cursor: default;
+        }
+        .step:first-child { border-top: 1px solid rgba(23,30,25,0.08); }
+
+        .step-num {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(4.5rem, 7vw, 7rem);
+            color: rgba(255,225,124,0.2);
+            line-height: 0.85;
+            flex-shrink: 0;
+            width: 110px;
+            transition: color 0.3s;
+        }
+        .step:hover .step-num { color: var(--yellow); }
+
+        .step-content { padding-top: 6px; }
+
+        .step-title {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.625rem;
+            text-transform: uppercase;
+            color: var(--charcoal);
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .step-desc { font-size: 0.96rem; line-height: 1.65; color: rgba(23,30,25,0.58); }
+
+        /* ── TESTIMONIALS ── */
+        .testimonials { padding: 120px 48px; background: #f8f9fa; }
+
+        .testi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1280px;
+            margin: 64px auto 0;
+            align-items: start;
+        }
+
+        .testi-card {
+            padding: 40px;
+            border-radius: 18px;
+            transition: transform 300ms cubic-bezier(0.4,0,0.2,1), box-shadow 300ms cubic-bezier(0.4,0,0.2,1);
+        }
+        .testi-card:hover { box-shadow: 0 24px 80px rgba(23,30,25,0.12); }
+
+        .testi-card.light { background: var(--white); border: 1px solid rgba(23,30,25,0.08); }
+        .testi-card.light:hover { transform: translateY(-5px); }
+
+        .testi-card.dark { background: var(--charcoal); transform: translateY(16px); }
+        .testi-card.dark:hover { transform: translateY(10px); }
+
+        .stars { display: flex; gap: 3px; margin-bottom: 24px; }
+        .star { color: var(--yellow); font-size: 1.2rem; }
+
+        .testi-text { font-size: 1rem; font-weight: 500; line-height: 1.65; margin-bottom: 28px; }
+        .testi-text.light { color: var(--charcoal); }
+        .testi-text.dark  { color: rgba(255,255,255,0.88); }
+
+        .testi-author { display: flex; align-items: center; gap: 14px; }
+
+        .author-av {
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Anton', sans-serif;
+            font-size: 0.85rem;
+            filter: grayscale(100%);
+            flex-shrink: 0;
+        }
+        .author-av.light { background: rgba(23,30,25,0.1);   color: var(--charcoal); }
+        .author-av.dark  { background: rgba(183,198,194,0.18); color: var(--sage); }
+
+        .author-name { font-family: 'Anton', sans-serif; font-size: 0.88rem; text-transform: uppercase; }
+        .author-name.light { color: var(--charcoal); }
+        .author-name.dark  { color: var(--white); }
+
+        .author-role { font-size: 0.78rem; margin-top: 2px; }
+        .author-role.light { color: rgba(23,30,25,0.45); }
+        .author-role.dark  { color: rgba(183,198,194,0.55); }
+
+        /* ── FINAL CTA ── */
+        .final-cta {
+            background: var(--yellow);
+            padding: 140px 48px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .cta-bg-word {
+            position: absolute;
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(8rem, 18vw, 16rem);
+            text-transform: uppercase;
+            color: rgba(23,30,25,0.055);
+            line-height: 0.9;
+            white-space: nowrap;
+            user-select: none;
+            pointer-events: none;
+        }
+        .cta-bg-word.top    { top: -30px; left: -20px; }
+        .cta-bg-word.bottom { bottom: -40px; right: -20px; }
+
+        .final-cta-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 780px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .final-headline {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(3.5rem, 7vw, 6rem);
+            text-transform: uppercase;
+            line-height: 0.92;
+            color: var(--charcoal);
+        }
+
+        .final-sub {
+            font-size: 1.2rem;
+            color: rgba(23,30,25,0.7);
+            max-width: 500px;
+            line-height: 1.6;
+        }
+
+        .final-form {
+            display: flex;
+            width: 100%;
+            max-width: 520px;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(23,30,25,0.22);
+            transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+        .final-form:hover { transform: scale(1.025); }
+
+        .final-input {
+            flex: 1;
+            padding: 20px 24px;
+            font-family: inherit;
+            font-size: 1rem;
+            border: none;
+            outline: none;
+            background: white;
+            color: var(--charcoal);
+        }
+        .final-input::placeholder { color: rgba(23,30,25,0.38); }
+
+        .final-btn {
+            font-family: 'Anton', sans-serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            background: var(--charcoal);
+            color: var(--white);
+            border: none;
+            padding: 20px 28px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: opacity 0.2s;
+        }
+        .final-btn:hover { opacity: 0.85; }
+
+        .final-note { font-size: 0.8rem; color: rgba(23,30,25,0.58); }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--charcoal);
+            padding: 60px 48px;
+        }
+
+        .footer-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 32px;
+        }
+
+        .footer-logo { font-family: 'Anton', sans-serif; font-size: 1.5rem; text-transform: uppercase; color: var(--white); }
+        .footer-logo span { color: var(--yellow); }
+
+        .footer-links { display: flex; gap: 32px; list-style: none; }
+        .footer-links a { font-size: 0.875rem; color: rgba(183,198,194,0.55); text-decoration: none; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--white); }
+
+        .footer-copy { font-size: 0.78rem; color: rgba(183,198,194,0.35); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1024px) {
+            .problem-solution { flex-direction: column; }
+            .solution-side { border-left: none; border-top: 4px solid var(--yellow); }
+            .bento-grid { grid-template-columns: repeat(2, 1fr); }
+            .bento-card.span-2 { grid-column: span 1; }
+            .testi-grid { grid-template-columns: 1fr; }
+            .testi-card.dark { transform: none; }
+            .testi-card.dark:hover { transform: translateY(-5px); }
+            .hiw-inner { grid-template-columns: 1fr; gap: 48px; }
+            .hiw-left { position: static; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 0 20px; }
+            .nav-links { display: none; }
+            .problem-side, .solution-side { padding: 60px 28px; }
+            .features, .how-it-works, .testimonials, .final-cta { padding: 80px 20px; }
+            .bento-grid { grid-template-columns: 1fr; }
+            .hero-form { flex-direction: column; border-radius: 14px; }
+            .hero-input { border-right: 2px solid rgba(23,30,25,0.15); border-radius: 14px; border-bottom: none; border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+            .hero-btn { border-radius: 0 0 14px 14px; padding: 16px; }
+            .social-proof { padding: 24px 20px; }
+            .social-proof-inner { gap: 28px; }
+            .proof-divider { display: none; }
+            footer { padding: 48px 20px; }
+            .footer-inner { flex-direction: column; align-items: flex-start; gap: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ════════════ NAVIGATION ════════════ -->
+<nav>
+    <div class="nav-inner">
+        <a href="#" class="logo">KROB<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="#solucao">Solução</a></li>
+            <li><a href="#recursos">Recursos</a></li>
+            <li><a href="#processo">Processo</a></li>
+            <li><a href="#resultados">Resultados</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="#" class="nav-login">Entrar</a>
+            <a href="#cta" class="nav-cta">Diagnóstico Grátis</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ════════════ HERO ════════════ -->
+<section class="hero">
+    <div class="hero-inner">
+        <div class="hero-badge">
+            <div class="badge-dot"></div>
+            Marketing Science para E-commerce de Cosméticos
+        </div>
+
+        <h1 class="hero-headline">
+            SEUS DADOS<br>
+            ESTÃO TE<br>
+            <span class="highlight-wrap"><span>CUSTANDO</span></span><br>
+            VENDAS
+        </h1>
+
+        <p class="hero-sub">
+            Implementamos rastreamento server-side, atribuição com IA e dashboards de marketing science que revelam exatamente onde cada real investido converte — ou desperdiça.
+        </p>
+
+        <form class="hero-form" onsubmit="handleSubmit(event)">
+            <input type="email" class="hero-input" placeholder="Seu e-mail empresarial" required />
+            <button type="submit" class="hero-btn">Quero Diagnóstico</button>
+        </form>
+
+        <p class="hero-trust">
+            ✓ <strong>Diagnóstico gratuito</strong> &nbsp;·&nbsp; Sem compromisso &nbsp;·&nbsp; Resposta em 24h
+        </p>
+    </div>
+</section>
+
+<!-- ════════════ SOCIAL PROOF BAR ════════════ -->
+<div class="social-proof">
+    <div class="social-proof-inner">
+        <div class="proof-stat">
+            <div class="proof-number">+340%</div>
+            <div class="proof-label">ROAS Médio dos Clientes</div>
+        </div>
+        <div class="proof-divider"></div>
+        <div class="proof-stat">
+            <div class="proof-number">98%</div>
+            <div class="proof-label">Precisão de Rastreamento</div>
+        </div>
+        <div class="proof-divider"></div>
+        <div class="proof-stat">
+            <div class="proof-number">-62%</div>
+            <div class="proof-label">Custo por Aquisição</div>
+        </div>
+        <div class="proof-divider"></div>
+        <div class="proof-stat">
+            <div class="proof-number">47</div>
+            <div class="proof-label">E-commerces Atendidos</div>
+        </div>
+    </div>
+</div>
+
+<!-- ════════════ PROBLEM / SOLUTION ════════════ -->
+<section class="problem-solution" id="solucao">
+    <div class="problem-side">
+        <p class="side-tag problem">O Jeito Antigo</p>
+        <h2 class="side-headline">O CAOS<br>QUE DRENA<br>SEU BUDGET</h2>
+        <div class="side-items">
+            <div class="side-item">
+                <svg class="side-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#ef4444" stroke-width="2"/><path d="M15 9l-6 6M9 9l6 6" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/></svg>
+                <p class="side-item-text problem">Pixels client-side com 30–60% de perda de dados — você otimiza campanhas com informações erradas</p>
+            </div>
+            <div class="side-item">
+                <svg class="side-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#ef4444" stroke-width="2"/><path d="M15 9l-6 6M9 9l6 6" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/></svg>
+                <p class="side-item-text problem">ROAS inflado pelas plataformas — Meta, Google e TikTok brigam pelo crédito da mesma venda</p>
+            </div>
+            <div class="side-item">
+                <svg class="side-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#ef4444" stroke-width="2"/><path d="M15 9l-6 6M9 9l6 6" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/></svg>
+                <p class="side-item-text problem">Decisões baseadas em feeling — sem modelo de atribuição você não sabe o que realmente funciona</p>
+            </div>
+            <div class="side-item">
+                <svg class="side-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#ef4444" stroke-width="2"/><path d="M15 9l-6 6M9 9l6 6" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/></svg>
+                <p class="side-item-text problem">Budget desperdiçado em públicos saturados enquanto clientes de alto CLV ficam invisíveis</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="solution-side">
+        <p class="side-tag solution">O Jeito KROB</p>
+        <h2 class="side-headline">DADOS<br>QUE GERAM<br>RECEITA</h2>
+        <div class="side-items">
+            <div class="side-item">
+                <svg class="side-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#22c55e" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <p class="side-item-text solution">Rastreamento server-side com 98%+ de precisão — capturamos cada evento independente de bloqueadores ou iOS 14+</p>
+            </div>
+            <div class="side-item">
+                <svg class="side-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#22c55e" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <p class="side-item-text solution">Atribuição multi-touch com IA — modelo próprio que distribui crédito de forma justa entre todos os canais</p>
+            </div>
+            <div class="side-item">
+                <svg class="side-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#22c55e" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <p class="side-item-text solution">Dashboard com MER, ROAS real e CAC por canal — decisões tomadas com dados, não suposições</p>
+            </div>
+            <div class="side-item">
+                <svg class="side-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#22c55e" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <p class="side-item-text solution">IA preditiva de CLV — identificamos clientes de alto valor antes da segunda compra e otimizamos para eles</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════ BENTO FEATURE GRID ════════════ -->
+<section class="features" id="recursos">
+    <div class="section-header">
+        <p class="section-tag">O que entregamos</p>
+        <h2 class="section-title">TUDO QUE SEU<br>E-COMMERCE PRECISA</h2>
+    </div>
+
+    <div class="bento-grid">
+
+        <!-- Card 1: span 2 — Server-side tracking -->
+        <div class="bento-card light span-2">
+            <div>
+                <p class="card-tag light">Rastreamento avançado</p>
+                <h3 class="card-title light">TRACKING<br>SERVER-SIDE</h3>
+            </div>
+            <div>
+                <div class="pulse-bars">
+                    <div class="pulse-bar"></div>
+                    <div class="pulse-bar"></div>
+                    <div class="pulse-bar"></div>
+                    <div class="pulse-bar"></div>
+                    <div class="pulse-bar"></div>
+                    <div class="pulse-bar"></div>
+                    <div class="pulse-bar"></div>
+                    <div class="pulse-bar"></div>
+                </div>
+                <p class="card-desc light">GTM Server-Side, Meta Conversions API, Google Enhanced Conversions e TikTok Events API. Dados confiáveis independente de iOS 14+, ad blockers ou navegação anônima.</p>
+            </div>
+        </div>
+
+        <!-- Card 2 — AI Attribution -->
+        <div class="bento-card dark">
+            <div>
+                <p class="card-tag dark">Inteligência artificial</p>
+                <h3 class="card-title dark">ATRIBUIÇÃO<br>COM IA</h3>
+            </div>
+            <div>
+                <div class="mini-dash">
+                    <div class="mini-row">
+                        <span class="mini-label">Meta Ads</span>
+                        <span class="mini-val">34%</span>
+                    </div>
+                    <div class="mini-row">
+                        <span class="mini-label">Google Ads</span>
+                        <span class="mini-val">28%</span>
+                    </div>
+                    <div class="mini-row">
+                        <span class="mini-label">Orgânico / SEO</span>
+                        <span class="mini-val">22%</span>
+                    </div>
+                    <div class="mini-row">
+                        <span class="mini-label">Email / CRM</span>
+                        <span class="mini-val">16%</span>
+                    </div>
+                </div>
+                <p class="card-desc dark" style="margin-top:12px;">Modelo data-driven que distribui crédito justo entre todos os touchpoints.</p>
+            </div>
+        </div>
+
+        <!-- Card 3 — CLV Prediction -->
+        <div class="bento-card light">
+            <div>
+                <p class="card-tag light">Análise preditiva</p>
+                <h3 class="card-title light">CLV<br>PREDICTION</h3>
+            </div>
+            <div>
+                <div class="clv-block">
+                    <div class="clv-row">
+                        <span class="clv-row-label">Segmento VIP</span>
+                        <span class="clv-row-val">R$ 2.847</span>
+                    </div>
+                    <div class="clv-bar-track"><div class="clv-bar-fill" style="width:82%"></div></div>
+                </div>
+                <div class="clv-block">
+                    <div class="clv-row">
+                        <span class="clv-row-label">Alto Potencial</span>
+                        <span class="clv-row-val">R$ 1.240</span>
+                    </div>
+                    <div class="clv-bar-track"><div class="clv-bar-fill" style="width:55%"></div></div>
+                </div>
+                <p class="card-desc light">Identificamos clientes com maior propensão de recompra antes mesmo da segunda conversão.</p>
+            </div>
+        </div>
+
+        <!-- Card 4: span 2 — Dashboard mockup -->
+        <div class="bento-card dark span-2">
+            <div>
+                <p class="card-tag dark">Visualização em tempo real</p>
+                <h3 class="card-title dark">DASHBOARD<br>EM TEMPO REAL</h3>
+            </div>
+            <div>
+                <div class="dash-mockup">
+                    <div class="dash-topbar">
+                        <div class="tl">
+                            <div class="tl-dot r"></div>
+                            <div class="tl-dot y"></div>
+                            <div class="tl-dot g"></div>
+                        </div>
+                        <div class="dash-url">analytics.krob.com.br</div>
+                    </div>
+                    <div class="dash-metrics">
+                        <div class="dash-metric accent">
+                            <div class="dm-label">MER REAL</div>
+                            <div class="dm-val y">4.7x</div>
+                        </div>
+                        <div class="dash-metric">
+                            <div class="dm-label">RECEITA HOJE</div>
+                            <div class="dm-val w">R$47k</div>
+                        </div>
+                        <div class="dash-metric">
+                            <div class="dm-label">CAC MÉDIO</div>
+                            <div class="dm-val w">R$38</div>
+                        </div>
+                        <div class="dash-metric">
+                            <div class="dm-label">NOVOS CLIENTES</div>
+                            <div class="dm-val w">+312</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ════════════ HOW IT WORKS ════════════ -->
+<section class="how-it-works" id="processo">
+    <div class="hiw-inner">
+        <div class="hiw-left">
+            <h2 class="hiw-title">COMO<br>FUNCIONA</h2>
+            <p class="hiw-sub">Um processo estruturado para transformar seus dados em vantagem competitiva — em semanas, não meses.</p>
+        </div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">01</div>
+                <div class="step-content">
+                    <h3 class="step-title">Auditoria de Dados</h3>
+                    <p class="step-desc">Analisamos toda sua stack de rastreamento: pixels, eventos, conversões e qualidade dos dados que chegam às plataformas. Mapeamos perdas, identificamos oportunidades críticas e entregamos um relatório detalhado do estado atual.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">02</div>
+                <div class="step-content">
+                    <h3 class="step-title">Implementação & Integração</h3>
+                    <p class="step-desc">Configuramos o server-side tracking, integramos com sua plataforma (VTEX, Shopify, Nuvemshop ou custom) e conectamos todas as fontes de dados em um modelo unificado com IA de atribuição e previsão de CLV.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">03</div>
+                <div class="step-content">
+                    <h3 class="step-title">Otimização Contínua</h3>
+                    <p class="step-desc">Monitoramento ativo, análises semanais, insights estratégicos e ajustes contínuos nas campanhas baseados nos dados reais — com reuniões mensais de performance e planejamento de crescimento.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════ TESTIMONIALS ════════════ -->
+<section class="testimonials" id="resultados">
+    <div class="section-header">
+        <p class="section-tag">Resultados reais</p>
+        <h2 class="section-title">O QUE NOSSOS<br>CLIENTES DIZEM</h2>
+    </div>
+
+    <div class="testi-grid">
+        <div class="testi-card light">
+            <div class="stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            </div>
+            <p class="testi-text light">"Descobrimos que estávamos desperdiçando 40% do budget em canais que não convertiam. Após a implementação da KROB, nosso ROAS real subiu de 2,1x para 5,8x em apenas 3 meses."</p>
+            <div class="testi-author">
+                <div class="author-av light">CA</div>
+                <div>
+                    <p class="author-name light">Carolina Alves</p>
+                    <p class="author-role light">CEO, Lumière Cosméticos</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="testi-card dark">
+            <div class="stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            </div>
+            <p class="testi-text dark">"O dashboard de atribuição mudou completamente como tomamos decisões de mídia. Pela primeira vez conseguimos ver o real impacto de cada canal e otimizar o budget com total confiança."</p>
+            <div class="testi-author">
+                <div class="author-av dark">RF</div>
+                <div>
+                    <p class="author-name dark">Rafael Ferreira</p>
+                    <p class="author-role dark">Head de Marketing, BeautyStore</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="testi-card light">
+            <div class="stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            </div>
+            <p class="testi-text light">"A previsão de CLV nos permitiu identificar as clientes de maior valor e criar campanhas específicas. Nossa taxa de recompra subiu 67% e o CAC caiu pela metade em 4 meses."</p>
+            <div class="testi-author">
+                <div class="author-av light">MS</div>
+                <div>
+                    <p class="author-name light">Mariana Santos</p>
+                    <p class="author-role light">Fundadora, Essência Skin</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════ FINAL CTA ════════════ -->
+<section class="final-cta" id="cta">
+    <div class="cta-bg-word top">DADOS</div>
+    <div class="cta-bg-word bottom">RECEITA</div>
+
+    <div class="final-cta-inner">
+        <h2 class="final-headline">PRONTO PARA<br>DADOS REAIS?</h2>
+        <p class="final-sub">Faça um diagnóstico gratuito e descubra quanto você está perdendo com rastreamento impreciso. Sem enrolação, sem compromisso.</p>
+
+        <form class="final-form" onsubmit="handleSubmit(event)">
+            <input type="email" class="final-input" placeholder="seu@email.com" required />
+            <button type="submit" class="final-btn">Diagnóstico Grátis</button>
+        </form>
+
+        <p class="final-note">✓ Análise completa em 48h &nbsp;·&nbsp; ✓ Sem custo &nbsp;·&nbsp; ✓ Sem compromisso</p>
+    </div>
+</section>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-logo">KROB<span>.</span></div>
+        <ul class="footer-links">
+            <li><a href="#">Política de Privacidade</a></li>
+            <li><a href="#">Termos de Uso</a></li>
+            <li><a href="#">Contato</a></li>
+        </ul>
+        <p class="footer-copy">© 2025 KROB. Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+<script>
+    function handleSubmit(e) {
+        e.preventDefault();
+        const email = e.target.querySelector('input[type="email"]').value;
+        const btn = e.target.querySelector('button');
+        const original = btn.textContent;
+        btn.textContent = 'Enviado!';
+        btn.style.background = '#22c55e';
+        setTimeout(() => {
+            btn.textContent = original;
+            btn.style.background = '';
+            e.target.reset();
+        }, 3000);
+        console.log('Lead capturado:', email);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const target = document.querySelector(a.getAttribute('href'));
+            if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        });
+    });
+</script>
+</body>
+</html>
