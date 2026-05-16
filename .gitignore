@@ -1,0 +1,18 @@
+# Cloudflare Wrangler local dev state
+.wrangler/
+
+# Node (caso instale dependências futuras)
+node_modules/
+
+# Env files locais
+.env
+.env.local
+.dev.vars
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/

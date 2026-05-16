@@ -46,4 +46,35 @@ Profile registrado em `~/.config/cloudflare/` com Account ID `e4a039cfcd4e8160e4
 ## Captação de Leads
 
 Os formulários (hero e CTA final) capturam: **nome**, **e-mail** e **WhatsApp**.
-Para integrar com CRM/planilha, adicionar webhook no `handleSubmit` em index.html.
+O `handleSubmit` dispara: Meta Pixel (browser) + `/tracker` (server-side CAPI + GA4).
+
+## Sistema de Tracking (krob-tracking-stack)
+
+Stack completa de rastreamento server-side integrada ao Cloudflare Pages Functions + D1.
+Documentação completa: `docs/TRACKING.md`.
+
+### D1 Database
+- **Nome:** `consultoria-tracking`
+- **ID:** `4011dd66-4380-4da1-80bd-cba6992d74b6`
+- **Migrations:** `migrations/` (0001–0015, aplicar com `cf-wrangler d1 migrations apply consultoria-tracking --remote`)
+
+### Funções (Cloudflare Pages Functions)
+| Arquivo | Rota | Função |
+|---|---|---|
+| `functions/_middleware.js` | `/*` | Cookie de sessão 400 dias + captura UTM/fbclid |
+| `functions/tracker.js` | `/tracker` | SHA-256 PII → Meta CAPI v25 + GA4 MP |
+| `functions/scripts/[[path]].js` | `/scripts/` | Proxy first-party do script GA4 |
+| `functions/api/leads.js` | `/api/leads` | API de leads para o dashboard |
+| `functions/api/events.js` | `/api/events` | API de tracking health para o dashboard |
+| `dash/index.html` | `/dash` | Dashboard analytics (autenticado por DASH_KEY) |
+
+### Variáveis de Ambiente (Cloudflare Pages → Settings → Environment Variables)
+| Variável | Valor |
+|---|---|
+| `META_PIXEL_ID` | `1290709392346372` |
+| `META_ACCESS_TOKEN` | token do Conversions API |
+| `GA4_MEASUREMENT_ID` | `G-KK9GFR6KW4` |
+| `GA4_API_SECRET` | API secret do Measurement Protocol |
+| `DASH_KEY` | senha do `/dash` |
+| `DEFAULT_COUNTRY_CODE` | `55` |
+| `META_TEST_EVENT_CODE` | só durante testes |
