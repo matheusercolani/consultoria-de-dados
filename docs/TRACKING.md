@@ -37,10 +37,10 @@ Dashboard → /dash?key=DASH_KEY → /api/leads + /api/events
 
 | Variável | Obrigatória | Descrição |
 |---|---|---|
-| `META_PIXEL_ID` | ✅ | `1290709392346372` |
+| `META_PIXEL_ID` | ✅ | `26796486073311252` |
 | `META_ACCESS_TOKEN` | ✅ | Token do Conversions API (Events Manager) |
 | `META_TEST_EVENT_CODE` | Testes | Código de teste do Events Manager — remover em produção |
-| `GA4_MEASUREMENT_ID` | ✅ | `G-KK9GFR6KW4` |
+| `GA4_MEASUREMENT_ID` | ✅ | `G-MCHVNR5E5V` |
 | `GA4_API_SECRET` | ✅ | API Secret do Measurement Protocol |
 | `DASH_KEY` | ✅ | Senha de acesso ao `/dash` |
 | `DEFAULT_COUNTRY_CODE` | ✅ | `55` (Brasil) |

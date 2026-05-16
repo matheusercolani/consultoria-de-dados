@@ -71,9 +71,9 @@ Documentação completa: `docs/TRACKING.md`.
 ### Variáveis de Ambiente (Cloudflare Pages → Settings → Environment Variables)
 | Variável | Valor |
 |---|---|
-| `META_PIXEL_ID` | `1290709392346372` |
+| `META_PIXEL_ID` | `26796486073311252` |
 | `META_ACCESS_TOKEN` | token do Conversions API |
-| `GA4_MEASUREMENT_ID` | `G-KK9GFR6KW4` |
+| `GA4_MEASUREMENT_ID` | `G-MCHVNR5E5V` |
 | `GA4_API_SECRET` | API secret do Measurement Protocol |
 | `DASH_KEY` | senha do `/dash` |
 | `DEFAULT_COUNTRY_CODE` | `55` |
